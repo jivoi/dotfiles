@@ -1,0 +1,125 @@
+[user]
+    name = jivoi
+    email = don.eugen@gmail.com
+
+[pull]
+    rebase = true
+
+[github]
+    user = jivoi
+
+[color]
+    ui = auto
+
+[color "status"]
+   added = cyan
+   changed = green
+   untracked = red
+
+[core]
+    autocrlf = input
+    ignorecase = false
+    whitespace = cr-at-eol
+    editor = vim
+
+[alias]
+    # short aliases
+    st = status 
+    co = checkout
+    ci = commit
+    br = branch
+
+    # push related
+    pom = push origin master
+
+    # pull related
+    p = pull
+    pr = pull --rebase
+
+    # remote related
+    rso = remote show origin
+
+    # identity(?)
+    me = config user.name
+    who = shortlog -s --
+
+    up = !git update
+    smash = !git ir
+
+    unstage = reset HEAD
+
+    # undo last commit
+    undo = reset --soft HEAD^
+
+    # interactive rebase
+    ir = !sh -c 'git rebase -i origin/${1-master}' -
+
+    # log aliases
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+    lgp = log -p
+    lol = log --pretty=oneline --abbrev-commit --graph --decorate
+    log-branch = log origin/master..
+    blog = !git log-branch
+    mlog = !git log --committer=\"`git me`\"
+    # show all files current user has ever edited
+    mfiles = !git log --no-merges --stat --author=\"`git me`\" --name-only --pretty=format:"" | sort -u
+    # all commits that aren't merges on all branches
+    all = !git log --pretty=oneline --abbrev-commit --all --no-merges
+    # all commits today for only me
+    today = !git all --since='12am' --committer=\"`git me`\"
+    # today's commits without formatting or paging
+    today-text = !git --no-pager today --no-color
+
+    # diff aliases
+    df = diff
+    ds = diff --stat
+
+    # update current branch
+    update = !sh -c 'git fetch origin && git rebase -p origin/${1-master}' -
+
+    # creates a diff of current branch against supplied branch, usage: git export-branch [refbranch]
+    branch-name = !git for-each-ref --format='%(refname:short)' `git symbolic-ref HEAD`
+    export-branch = !git format-patch --stdout $1 > ~/branches/`git branch-name`.diff
+    
+    # files different from master on current branch
+    fdm = !git diff --name-status origin/master.. 
+
+    # last commit info
+    last = !git show --name-status
+    last-files = !git last --pretty=format:""
+
+    # `git spawn my-new-branch`: from https://github.com/gregschoen/awesome-git-config
+    # make new branch based on master no matter which branch is checked out
+    spawn = !sh -c 'git checkout -b $1 ${2-master} && git config branch.$1.localmerge ${2-master}' - 
+
+    # `git nuke my-old-branch`: from https://github.com/gregschoen/awesome-git-config
+    # (Checks out master and does a non-forced delete on the branch entered)
+    nuke = !git co master && sh -c 'git br -d $1' -
+
+    # `git sync`: from https://github.com/gregschoen/awesome-git-config
+    # update current branch and master
+    sync = !git update && \
+        git co master && \
+        git pull && \
+        git co @{-1} 
+
+    # `git save`: from https://github.com/gregschoen/awesome-git-config
+    # saves a commit in current branch: local branches you will be rebasing
+    save = !git commit -am \"save game\"
+
+    # cleanup repo: from https://github.com/gregschoen/awesome-git-config
+    cleanup = !git remote prune origin && git gc && git clean -dfx
+
+    # list files changed by last commit in absolute location
+    list = !git show --pretty=format:"" --name-only | sed '/^$/d' | sed 's|^|/var/www/|g'
+
+    # give a count of dirty files
+    dirty = !git status --porcelain -uno | wc -l
+
+    # number of non-merge commits 
+    peeps = !git log --pretty=format:%aN --no-merges | sort | uniq -c | sort -rn
+
+    # awesome placeholders: from https://github.com/gregschoen/awesome-git-config
+    crunk = status
+    unfuck = status
+    deploy = status
