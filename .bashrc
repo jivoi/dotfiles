@@ -226,7 +226,7 @@ push_dotfiles() {
         sudo $installer install git-core || exit
       fi
       git clone https://github.com/jivoi/dotfiles.git $HOME/.dot
-      ln -svf $HOME/.dot/{.bashrc,.cshrc,.gitconfig,.screenrc,.tmux.conf,.tmux.status.conf,.vimrc,.zshrc} $HOME/
+      ln -svf $HOME/.dot/{.bashrc,.cshrc,.gitconfig,.screenrc,.tmux.conf,.tmux.status.conf,.vimrc,.zshrc,bin} $HOME/
       ln -svf $HOME/.dot/ssh_config $HOME/.ssh/config'
   done
 }
