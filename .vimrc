@@ -247,10 +247,10 @@ let g:pydiction_location = '/home/ekoz/.vim/bundle/pydiction/complete-dict'
 let g:pydiction_menu_height = 20
 
 " Для pathogen
-filetype on
-call pathogen#infect()
-call pathogen#helptags()
-call pathogen#runtime_append_all_bundles()
+" filetype on
+" call pathogen#infect()
+" call pathogen#helptags()
+" call pathogen#runtime_append_all_bundles()
 filetype plugin indent on
 
 " Настройки для SessionMgr
