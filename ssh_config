@@ -1,0 +1,11 @@
+UserKnownHostsFile /dev/null
+StrictHostKeyChecking no
+LogLevel error
+GSSAPIAuthentication no
+CompressionLevel 9
+Compression yes
+
+host *
+   controlmaster auto
+   controlpath /tmp/ssh-%r@%h:%p
+   User root
