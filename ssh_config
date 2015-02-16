@@ -9,3 +9,13 @@ host *
    controlmaster auto
    controlpath /tmp/ssh-%r@%h:%p
    User root
+
+Host kali
+    Hostname 192.168.56.101
+    Port 22
+    User root
+
+Host ubuntu
+    Hostname 192.168.56.102
+    Port 22
+    User root
