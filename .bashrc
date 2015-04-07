@@ -73,6 +73,8 @@ alias ..='cd ..'
 alias ...='cd ../../'
 alias ....='cd ../../..'
 alias p="sudo pacman"
+alias pu="sudo pacman -Syu"
+alias pc="sudo pacman -Scc"
 alias wget='wget --no-check-certificate'
 alias scp='scp -oStrictHostKeyChecking=no'
 alias ssh='ssh -oStrictHostKeyChecking=no'
