@@ -1,1 +1,5 @@
 dotfiles
+
+cd ~
+git clone https://github.com/jivoi/dotfiles.git
+./bootstrap.sh

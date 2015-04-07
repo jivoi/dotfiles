@@ -1,0 +1,34 @@
+{
+	"bold_folder_labels": true,
+	"caret_style": "phase",
+	"close_windows_when_empty": false,
+	"color_scheme": "Packages/Colorcoder/Monokai (Colorcoded).tmTheme",
+	"create_window_at_startup": false,
+	"fade_fold_buttons": false,
+	"tab_size": 4,
+	"translate_tabs_to_spaces": true,
+	"folder_exclude_patterns":
+	[
+		".svn",
+		".bundler",
+		".git"
+	],
+	"font_options":
+	[
+		"subpixel_antialias"
+	],
+	"font_size": 15,
+	"highlight_line": true,
+	"highlight_modified_tabs": true,
+	"ignored_packages":
+	[
+		"rsub",
+		"Vintage"
+	],
+	"original_color_scheme": "Packages/Color Scheme - Default/Monokai.tmTheme",
+	"shift_tab_unindent": true,
+	"soda_classic_tabs": true,
+	"soda_folder_icons": true,
+	"theme": "Soda Dark.sublime-theme"
+}
+
