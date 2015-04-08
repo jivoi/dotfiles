@@ -1,0 +1,9 @@
+[framework/core]
+PROMPT=%yel%L%clr (s:%grn%S%clr j:%grn%J%clr) msf
+PromptTimeFormat=%I:%H:%S
+ConsoleLogging=true
+LogLevel=5
+SessionLogging=true
+TimestampOutput=true
+
+[framework/ui/console]
