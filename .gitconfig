@@ -22,6 +22,9 @@
     whitespace = cr-at-eol
     editor = vim
 
+[url "https://"]   
+    insteadOf = git://
+
 [alias]
     # short aliases
     st = status 
