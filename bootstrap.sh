@@ -17,8 +17,9 @@ SCRIPT_PATH=`realpath $0`
 DOTFILES=`dirname $SCRIPT_PATH`
 EXCLUDE="sh_config\|README\|bootstrap.sh"
 
-# Install bin scripts
+# Install dir symlinks 
 safe_link "$DOTFILES/bin"
+safe_link "$DOTFILES/.msf4"
 # Install dotfiles symlinks
 for f in `ls -la $DOTFILES|grep "^-"|awk '{print $NF}'|grep -v $EXCLUDE`; do
     safe_link "$DOTFILES/$f"
