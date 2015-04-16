@@ -19,3 +19,15 @@ Host ubuntu
     Hostname 192.168.56.102
     Port 22
     User root
+
+# tunneling
+#Host <space-separated-list-of-hostnames>
+#  ProxyCommand	ssh <proxy-hostname> nc %h %p
+#  User <user>
+#  IdentityFile ~/.ssh/<keyfile>
+
+# specific port usage
+#Host <space-separated-list-of-hostnames>
+#  User <user>
+#  Port <port>
+#  IdentityFile ~/.ssh/<keyfile>
