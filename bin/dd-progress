@@ -1,0 +1,41 @@
+#!/bin/sh
+if [ $# -lt 2 ] ; then
+  echo "usage: dd-progress <from (if in dd)> <to (of in dd)> (flags)"
+  echo "see man page or help of dd(1) to see flags."
+  echo
+  echo "example: dd-progress /dev/zero /dev/sdb count=2048"
+  exit 2
+fi
+if ! hash pv >/dev/null 2>&1 ; then
+  echo "pv(1) is not installed!"
+  echo "aborting..."
+  exit 1
+fi
+if [ ! -e "$1" ] ; then
+  echo "failed to open $1: no such file or directory"
+  exit 1
+fi
+
+echo -e "run dd: \e[1;32m$1\e[0m -> \e[1;36m$2\e[0m"
+echo -n "type [OK] to run: "
+read answer
+case $answer in
+  OK)
+    ;;
+  *)
+    echo 'abort'
+    exit 2
+    ;;
+esac
+
+if [ $# -eq 2 ] ; then
+  dd if="$1" | pv | dd of="$2"
+elif [ $# -gt 2 ] ; then
+  arg_if="$1"
+  arg_of="$2"
+  shift 2
+  dd if="$arg_if" "$@" | pv | dd of="$arg_of"
+fi
+
+sync
+sync

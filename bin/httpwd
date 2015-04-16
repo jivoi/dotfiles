@@ -1,0 +1,31 @@
+#!/bin/sh
+
+port=8888
+
+if [ "$1" != '' ] ; then
+  port=$1
+fi
+
+echo "trying to serve on http://localhost:$port/ ..."
+
+if hash ruby &>/dev/null ; then
+  echo "exec: \`ruby -rwebrick -e \"WEBrick::HTTPServer.new(:Port => $port, :DocumentRoot => Dir.pwd).start\"\`"
+  ruby -rwebrick -e "WEBrick::HTTPServer.new(:Port => $port, :DocumentRoot => Dir.pwd).start"
+elif hash python &>/dev/null ; then
+  if [ "$(python -c 'import sys; print(".".join(map(str, sys.version_info[:1])))')" = "3" ]; then
+    # python 3
+    echo "exec: \`python -m http.server $port\` (expecting python3)"
+    python -m http.server $port
+  elif [ $(python -c 'import sys; print(".".join(map(str, sys.version_info[:1])))') = '2' ]; then
+    # python 2
+    echo "exec: \`python -m SimpleHTTPServer $port\` (expecting python2)"
+    python -m SimpleHTTPServer $port
+  fi
+elif hash php &>/dev/null ; then
+  echo "exec: \`php -S localhost:$port\`"
+  php -S localhost:$port
+else
+  echo "there are no commands to launch HTTP server!"
+  exit 1
+fi
+

@@ -1,0 +1,5 @@
+#!/bin/sh
+rm -f ~*
+rm -f *~
+rm -f .*.sw[a-z]
+

@@ -1,0 +1,8 @@
+#!/bin/sh
+
+if [ "${1+itfmayuge}" = itfmayuge ] ; then
+  host=$(echo "$1" | sed -e "s/^https\?:\/\/\(.*\)$/\1/g" -e "s/\/.*$//g")
+  ping -c 10 $host
+else
+  ping -c 10 8.8.8.8
+fi
