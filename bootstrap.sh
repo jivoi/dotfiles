@@ -9,7 +9,8 @@ realpath() {
 safe_link(){
     local src="$1"
     local dest="$HOME/`basename $src`"
-    [ ! -e "$dest" ] && ln -sf "$src" "$dest"
+    #[ ! -e "$dest" ] && ln -sf "$src" "$dest"
+    ln -sf "$src" "$dest"
 }
 
 # Get root
