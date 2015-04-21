@@ -1,0 +1,79 @@
+#!/bin/bash
+# Copyright 2013 Mark Lodato <lodato@google.com>
+# Released under the MIT license; see LICENSE for details.
+
+OPTIONS_SPEC="\
+git recent-branches
+
+Show branches and how old each is, sorted by commit date.
+
+Default values for the below flags can be set in .gitconfig with
+'recent-branch.since' or 'recent-branch.ignore'.
+--
+a,all           show all branches, overriding --since and --ignore
+since=          ignore branches older than this date
+ignore=         ignore branches whose names match this GNU regexp
+"
+
+SUBDIRECTORY_OK=Yes
+OPTIONS_KEEPDASHDASH=
+. "$(git --exec-path)/git-sh-setup"
+
+since=$(git config --get recent-branches.since)
+ignore_re=$(git config --get recent-branches.ignore)
+
+while test $# != 0
+do
+  case "$1" in
+    -a|--all) since= ignore_re= ;;
+    --since) since="$2" ; shift ;;
+    --ignore) ignore_re="$2" ; shift ;;
+    --) shift ; break ;;
+    *) break ;;
+  esac
+  shift
+done
+
+if [[ $# -ne 0 ]]; then
+  echo "error: no positional arguments are allowed" >&2
+  usage
+fi
+
+parse_date() {
+  git rev-parse --since="$*" | sed -e 's/^--max-age=//'
+}
+
+if [[ -z $since ]]; then
+  min_timestamp=0
+else
+  min_timestamp=$(parse_date "$since")
+fi
+current_branch=$(git symbolic-ref --short -q HEAD)
+
+# Make sure that the date format is not completely invalid.  `git rev-parse
+# --since=...` ignores pieces not understand, replacing those pieces with those
+# corresponding to now.  This won't catch things like "yesterday non" (instead
+# of "noon"), but it's better than nothing.
+if [[ min_timestamp -eq $(parse_date now) ]]; then
+  echo "error: invalid timestamp for --since: $since"
+  exit 2
+fi
+
+git for-each-ref refs/heads --sort=committerdate \
+  --format='%(refname:short)|%(committerdate:raw)|%(committerdate:relative)' \
+  | while IFS='|' read branch timestamp relative_date
+    do
+      # $timestamp is of the form "12345 -0500"; we only want the first part.
+      if [[ $branch != $current_branch &&
+            ( ${timestamp% *} -lt $min_timestamp ||
+              ( -n $ignore_re && $branch =~ $ignore_re ) ) ]]; then
+        continue
+      fi
+      start='  '
+      end=''
+      if [[ $branch = $current_branch ]]; then
+        start='* \e[32m'
+        end='\e[0m'
+      fi
+      printf "$start%-30s %s$end\\n" "$branch" "$relative_date"
+    done

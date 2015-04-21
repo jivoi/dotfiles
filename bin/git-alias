@@ -1,0 +1,39 @@
+#!/bin/bash
+# Copyright 2013 Mark Lodato <lodato@google.com>
+# Released under the MIT license; see LICENSE for details.
+
+usage() {
+  cat >&2 <<EOF
+USAGE: git alias [-s|--sort] [name]
+
+Print all aliases whose name starts with the given prefix.
+If -s is given, sort by name; otherwise, use the order returned by git-config.
+EOF
+  exit 1
+}
+
+NAME=
+SORT=
+while [[ $# > 0 ]]; do
+  case "$1" in
+    -s|--sort)
+      SORT=1
+      ;;
+    -h|--help)
+      usage
+      ;;
+    *)
+      if [[ -z $NAME ]]; then
+        NAME="$1\$"
+      else
+        usage
+      fi
+  esac
+  shift
+done
+
+git config --get-regexp "^alias\\.$NAME" \
+  | ([[ -n $SORT ]] && sort || cat) \
+  | sed -e 's/^alias\.\(\S*\) /\1\t/'
+
+exit ${PIPESTATUS[0]}
