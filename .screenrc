@@ -3,13 +3,14 @@
 # Settings used to initialize screen sessions
 term screen-256color
 # Change default escape sequence from C-a to a backslash
-#  escape ``                            # default ^Aa
+escape ^Qq
 
 # Do not display the copyright page
-startup_message off                  # default: on
+startup_message off
 
 # Change the number of scrollback lines
-defscrollback 1000                   # default: 100
+defscrollback 10000 
+mousetrack on
 
 # Bind F11 and F12 (NOT F1 and F2) to previous and next screen window
 bindkey -k F1 prev
