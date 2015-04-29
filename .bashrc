@@ -1,5 +1,8 @@
 #!/bin/bash
-export PATH=~/bin/:/bin:/sbin:/usr/sbin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/games:/usr/lib/java/bin:/usr/lib/java/jre/bin:/usr/lib/qt/bin:/usr/lib/qt4/bin:/usr/share/texmf/bin:/opt/kde/bin:/opt/java/jre/bin:/opt/pt/bin:/opt/pt/lib:/opt/java/jre/bin
+export PATH=~/bin/:/cygdrive/c/Go/bin:/bin:/sbin:/usr/sbin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/games:/usr/lib/java/bin:/usr/lib/java/jre/bin:/usr/lib/qt/bin:/usr/lib/qt4/bin:/usr/share/texmf/bin:/opt/kde/bin:/opt/java/jre/bin:/opt/pt/bin:/opt/pt/lib:/opt/java/jre/bin
+
+export GOPATH=$HOME/go
+export GOBIN=$HOME/bin
 
 unset MAILCHECK
 export NOVACLIENT_DEBUG=1
@@ -28,6 +31,10 @@ export PYTHONSTARTUP=~/.pythonrc
 # Bash-completion
 if [ -f /usr/share/bash-completion/bash_completion ]; then
  . /usr/share/bash-completion/bash_completion
+fi
+
+if [ -f /etc/bash_completion ]; then
+ . /etc/bash_completion
 fi
 
 export HISTSIZE=1000000
