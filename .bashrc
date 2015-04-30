@@ -37,6 +37,10 @@ if [ -f /etc/bash_completion ]; then
  . /etc/bash_completion
 fi
 
+if [ -f ~/bin/z.sh ]; then
+ . ~/bin/z.sh
+fi
+
 export HISTSIZE=1000000
 export HISTCONTROL=ignoredups
 export HISTTIMEFORMAT="%t%d.%m.%y %H:%M:%S%t"
