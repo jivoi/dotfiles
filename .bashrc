@@ -125,6 +125,10 @@ restart() {
     sudo /etc/init.d/$1 restart
 }
 
+psa() {
+    ps aux | grep $1
+}
+
 cd() {
     builtin cd "$@" && ls -la
 }
