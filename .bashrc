@@ -125,6 +125,20 @@ restart() {
     sudo /etc/init.d/$1 restart
 }
 
+cd() {
+    builtin cd "$@" && ls -la
+}
+
+scr() {
+    if screen -ls | grep -q Main; then
+         # reattach to Main: 
+         screen -xr Main
+    else
+         # name session "Main":
+         screen -S Main
+    fi
+}
+
 ebrc() {
     vim ~/.bashrc
     bash
