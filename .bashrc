@@ -125,6 +125,10 @@ restart() {
     sudo /etc/init.d/$1 restart
 }
 
+bk() {
+	cp -a "$1" "${1}_$(date --iso-8601=seconds)"
+}
+
 psa() {
     ps aux | grep $1
 }
