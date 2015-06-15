@@ -70,6 +70,7 @@ fi
 #PS1='\[\033[02;36m\]\A\[\033[00m\] \[\033[01;32m\]\u@\h\[\033[01;34m\] \w \$\[\033[00m\] '
 
 # Aliases
+alias msf='msfconsole -q'
 alias os='openstack'
 alias fuck='$(thefuck $(fc -ln -1))'
 alias hgrep='history | grep $1'
