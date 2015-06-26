@@ -1,0 +1,31 @@
+"*":
+  "exception-reporting":
+    userId: "d263946a-fb6d-ffaa-9c37-6ff8178af81a"
+  welcome:
+    showOnStartup: false
+  core:
+    autoHideMenuBar: true
+    themes: [
+      "one-dark-ui"
+      "atom-dark-syntax"
+    ]
+    disabledPackages: [
+      "go-plus"
+      "editorconfig"
+    ]
+  editor:
+    invisibles: {}
+    fontSize: 17
+    showIndentGuide: true
+    showInvisibles: true
+    tabLength: 4
+  "atom-terminal":
+    app: "C:\\cygwin64\\bin\\mintty.exe"
+  "autocomplete-plus": {}
+  "go-plus": {}
+  "save-session":
+    dataSaveFolder: "C:\\Users\\ekoz\\.atom\\packages\\save-session\\projects"
+  "markdown-preview":
+    useGitHubStyle: true
+  autosave:
+    enabled: true
