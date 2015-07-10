@@ -69,6 +69,11 @@ fi
 
 #PS1='\[\033[02;36m\]\A\[\033[00m\] \[\033[01;32m\]\u@\h\[\033[01;34m\] \w \$\[\033[00m\] '
 
+# Alias definitions
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
 # Aliases
 alias msf='msfconsole -q'
 alias os='openstack'
