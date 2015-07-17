@@ -1,0 +1,213 @@
+start() {
+    sudo /etc/init.d/$1 start
+}
+
+stop() {
+    sudo /etc/init.d/$1 stop
+}
+
+restart() {
+    sudo /etc/init.d/$1 restart
+}
+
+ssh-reagent() {
+  for agent in /tmp/ssh-*/agent.*; do
+      export SSH_AUTH_SOCK=$agent
+      if ssh-add -l 2>&1 > /dev/null; then
+         echo Found working SSH Agent:
+         ssh-add -l
+         return
+      fi
+  done
+  echo Cannot find ssh agent - maybe you should reconnect and forward it?
+}
+
+bk() {
+    cp -a "$1" "${1}_$(date --iso-8601=seconds)"
+}
+
+psa() {
+    ps aux | grep $1
+}
+
+cd() {
+    builtin cd "$@" && ls -la
+}
+
+scr() {
+    if screen -ls | grep -q Main; then
+         # reattach to Main:
+         screen -xr Main
+    else
+         # name session "Main":
+         screen -S Main
+    fi
+}
+
+ebrc() {
+    vim ~/.bashrc
+    bash
+}
+
+makepasswords() {
+    perl <<EOPERL
+        my @a = ("a".."z","A".."Z","0".."9",(split //, q{#@,.<>$%&()*^}));
+        for (1..10) {
+            print join "", map { \$a[rand @a] } (1..rand(3)+8);
+            print qq{\n}
+        }
+EOPERL
+}
+
+extract () {
+    if [ -f $1 ]; then
+        case $1 in
+            *.tar.bz2)  tar -jxvf $1                        ;;
+            *.tar.gz)   tar -zxvf $1                        ;;
+            *.bz2)      bunzip2 $1                          ;;
+            *.dmg)      hdiutil mount $1                    ;;
+            *.gz)       gunzip $1                           ;;
+            *.tar)      tar -xvf $1                         ;;
+            *.tbz2)     tar -jxvf $1                        ;;
+            *.tgz)      tar -zxvf $1                        ;;
+            *.zip)      unzip $1                            ;;
+            *.ZIP)      unzip $1                            ;;
+            *.pax)      cat $1 | pax -r                     ;;
+            *.pax.Z)    uncompress $1 --stdout | pax -r     ;;
+            *.Z)        uncompress $1                       ;;
+            *)          echo "'$1' cannot be extracted/mounted via extract()" ;;
+        esac
+    else
+        echo "'$1' is not a valid file"
+    fi
+}
+
+packed() {
+    if [ $1 ] ; then
+        case $1 in
+            tbz)    tar cjvf $2.tar.bz2 $2      ;;
+            tgz)    tar czvf $2.tar.gz  $2      ;;
+            tar)    tar cpvf $2.tar  $2       ;;
+            bz2)    bzip $2 ;;
+            gz)     gzip -c -9 -n $2 > $2.gz ;;
+            zip)    zip -r $2.zip $2   ;;
+            7z)     7z a $2.7z $2    ;;
+            *)      echo "'$1' cannot be packed via packed()" ;;
+        esac
+    else
+        echo "'$1' is not a valid file"
+    fi
+}
+
+nscheck() {
+  named-checkzone $1 $2
+}
+
+dns() {
+  dig +nocmd $1 any +multiline +noall +answer
+}
+
+myip() {
+  curl -s http://checkip.dyndns.com/ | sed 's/[^0-9\.]//g'
+}
+
+futurama() {
+  curl -Is slashdot.org | egrep "^X-(F|B)" | cut -d \- -f 2
+}
+
+msk() {
+  curl -s "http://www.google.com/ig/api?weather=Moscow" | sed 's|.*<temp_c data="\([^"]*\)"/>.*|\1|'
+}
+
+dmsgh() {
+  dmesg|perl -ne 'BEGIN{$a= time()- qx!cat /proc/uptime!};s/\[(\d+)\.\d+\]/localtime($1 + $a)/e; print $_;'
+}
+
+_ssh_hosts() {
+  grep "Host " ~/.ssh/config 2> /dev/null | sed -e "s/Host //g"
+  cat ~/.ssh/known_hosts 2> /dev/null | cut -f 1 -d ' ' | sed -e s/,.*//g | uniq | grep -v "\["
+}
+
+# if cat is called on a directory, call ls instead
+cat() {
+  if [ $# = 1 ] && [ -d $1 ]; then
+    ls $1
+  else
+    `which cat` "$@"
+  fi
+}
+
+# push ssh key to remote host
+push_ssh_cert() {
+    local _host
+    test -f ~/.ssh/id_rsa.pub || echo "no key, run ssh-keygen -t rsa -b 2048"
+    for _host in "$2";
+    do
+        echo "run at $1@$_host"
+        ssh-copy-id -i ~/.ssh/id_rsa.pub $1@$_host
+        #scp ~/.bashrc  $1@$_host:~/.bashrc
+    done
+}
+
+# push dotfiles to remote host
+push_dotfiles() {
+  local _host
+  for _host in "$2"; do
+    echo "run at $1@$_host"
+    ssh $1@$_host '
+      if [ ! $(which git) ]; then
+        for installer in apt-get yum port brew; do
+          if [ $(which $installer) ]; then break; fi
+        done
+        sudo $installer install git-core || exit
+      fi
+      git clone https://github.com/jivoi/dotfiles.git $HOME/.dot
+      ln -svf $HOME/.dot/{.bashrc,.cshrc,.gitconfig,.screenrc,.tmux.conf,.tmux.status.conf,.vimrc,.zshrc,bin} $HOME/
+      ln -svf $HOME/.dot/ssh_config $HOME/.ssh/config'
+  done
+}
+
+_ssh_completion ()
+{
+    cur=${COMP_WORDS[COMP_CWORD]};
+    COMPREPLY=($(compgen -W '$(cut -d " " -f1 ~/hosts/hosts_all) --all --schema' -- $cur))
+}
+complete -F _ssh_completion ssh
+
+_fab_completion() {
+    COMPREPLY=( $( \
+    COMP_LINE=$COMP_LINE  COMP_POINT=$COMP_POINT \
+    COMP_WORDS="${COMP_WORDS[*]}"  COMP_CWORD=$COMP_CWORD \
+    OPTPARSE_AUTO_COMPLETE=1 $1 ) )
+}
+complete -F _fab_completion fab
+
+ipmi_bootpxe() {
+        local _host
+        _host=$1
+        if [ -n "${_host}" ]; then
+                ipmitool -I lanplus -U ADMIN -P ADMIN -H ${_host} chassis bootdev pxe
+        else
+                echo "host not specified"
+        fi
+}
+
+ipmi_reset() {
+        local _host
+        _host=$1
+        if [ -n "${_host}" ]; then
+                ipmitool -I lanplus -U ADMIN -P ADMIN -H ${_host} power reset
+        else
+                echo "host not specified"
+        fi
+}
+
+ipmi_power_cycle() {
+        local _host
+        _host=$1
+        if [ -n "${_host}" ]; then
+                ipmitool -I lanplus -U ADMIN -P ADMIN -H ${_host} power cycle
+        else
+                echo "host not specified"
+        fi
+}

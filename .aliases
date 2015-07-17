@@ -1,0 +1,35 @@
+alias ..='cd ..'
+alias ...='cd ../../'
+alias ....='cd ../../..'
+
+alias msf='msfconsole -q'
+alias os='openstack'
+alias fuck='$(thefuck $(fc -ln -1))'
+alias hgrep='history | grep $1'
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+alias lm='ls -latr'
+alias ll='ls -l --color=auto'
+alias la='ls -A --color=auto'
+alias l='ls -CF --color=auto'
+alias vi='vim'
+alias t='tree -L 1 -C -h'
+alias week='date +%V'
+alias p="sudo pacman"
+alias pu="sudo pacman -Syu"
+alias pc="sudo pacman -Scc"
+alias wget='wget --no-check-certificate'
+alias scp='scp -oStrictHostKeyChecking=no'
+alias ssh='ssh -oStrictHostKeyChecking=no'
+
+if [ -x /usr/bin/dircolors ]; then
+  test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+  alias ls='ls -hF --color=auto'
+  alias dir='ls --color=auto --format=vertical'
+  alias vdir='ls --color=auto --format=long'
+
+  alias grep='grep --color=auto'
+  alias fgrep='fgrep --color=auto'
+  alias egrep='egrep --color=auto'
+fi

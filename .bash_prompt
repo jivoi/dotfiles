@@ -1,0 +1,19 @@
+BGREEN='\[\033[1;32m\]'
+DGREEN='\[\033[0;32m\]'
+BRED='\[\033[1;31m\]'
+RED='\[\033[0;31m\]'
+BBLUE='\[\033[1;36m\]'
+BLUE='\[\033[0;34m\]'
+NORMAL='\[\033[00m\]'
+BPURPLE='\[\033[1;35m\]'
+DPURPLE='\[\033[1;34m\]'
+WHITE='\[\033[0;37m\]'
+BWHITE='\[\033[1;37m\]'
+
+# Title
+if [[ "$UID" == "0" ]] ; then
+PS1="${BRED}\u@${BGREEN}\h: ${BBLUE}\W ${BRED}# ${NORMAL}"
+else
+PS1="${BWHITE}┌────[${BGREEN}\u${BWHITE}@${BBLUE}\h: ${BPURPLE}\w${BWHITE}]\n${BWHITE}└─>${DPURPLE}\$${NORMAL} "
+fi
+#PS1='\[\033[02;36m\]\A\[\033[00m\] \[\033[01;32m\]\u@\h\[\033[01;34m\] \w \$\[\033[00m\] '
