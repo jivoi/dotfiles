@@ -8,7 +8,7 @@
 #               truthix the cyberpunk, fG!, gln
 #
 # FEEDBACK: http://reverse.put.as - reverser@put.as
-# https://github.com/deadbits/dotfiles/blob/master/dot-gdbinit
+# https://github.com/gdbinit/Gdbinit/blob/master/gdbinit
 #
 # NOTES: 'help user' in gdb will list the commands/descriptions in this file
 #        'context on' now enables auto-display of context screen
