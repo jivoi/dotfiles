@@ -22,6 +22,8 @@ alias pc="sudo pacman -Scc"
 alias wget='wget --no-check-certificate'
 alias scp='scp -oStrictHostKeyChecking=no'
 alias ssh='ssh -oStrictHostKeyChecking=no'
+alias hosts='sudo vim /etc/hosts'
+alias open='/usr/bin/chromium-browser "$@"'
 
 if [ -x /usr/bin/dircolors ]; then
   test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"

@@ -211,3 +211,57 @@ ipmi_power_cycle() {
                 echo "host not specified"
         fi
 }
+
+man() {
+env \
+	LESS_TERMCAP_mb=$(printf "\e[1;31m") \
+	LESS_TERMCAP_md=$(printf "\e[1;31m") \
+	LESS_TERMCAP_me=$(printf "\e[0m") \
+	LESS_TERMCAP_se=$(printf "\e[0m") \
+	LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
+	LESS_TERMCAP_ue=$(printf "\e[0m") \
+	LESS_TERMCAP_us=$(printf "\e[1;32m") \
+	man "$@"
+}
+
+# Use feh to nicely view images
+openimage() {
+	local types='*.jpg *.JPG *.png *.PNG *.gif *.GIF *.jpeg *.JPEG'
+	cd $(dirname "$1")
+	local file=$(basename "$1")
+	feh -q $types --auto-zoom \
+		--sort filename --borderless \
+		--scale-down --draw-filename \
+		--image-bg black \
+		--start-at "$file"
+}
+
+# Call from a local repo to open the repository on github/bitbucket in browser
+repo() {
+	local giturl=$(git config --get remote.origin.url | sed 's/git@/\/\//g' | sed 's/.git$//' | sed 's/https://g' | sed 's/:/\//g')
+	if [[ $giturl == "" ]]; then
+		echo "Not a git repository or no remote.origin.url is set."
+	else
+		local gitbranch=$(git rev-parse --abbrev-ref HEAD)
+		local giturl="http:${giturl}"
+		if [[ $gitbranch != "master" ]]; then
+			local giturl="${giturl}/tree/${gitbranch}"
+		fi
+		echo $giturl
+		open $giturl
+	fi
+}
+
+# Determine size of a file or total size of a directory
+fs() {
+	if du -b /dev/null > /dev/null 2>&1; then
+		local arg=-sbh
+	else
+		local arg=-sh
+	fi
+	if [[ -n "$@" ]]; then
+		du $arg -- "$@"
+	else
+		du $arg .[^.]* *
+	fi
+}
