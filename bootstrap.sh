@@ -16,7 +16,7 @@ safe_link(){
 # Get root
 SCRIPT_PATH=`realpath $0`
 DOTFILES=`dirname $SCRIPT_PATH`
-EXCLUDE="sh_config\|README\|bootstrap.sh"
+EXCLUDE="ssh_config\|README\|bootstrap.sh"
 
 # Install dir symlinks 
 safe_link "$DOTFILES/bin"
