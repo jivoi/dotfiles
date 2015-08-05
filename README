@@ -1,5 +1,6 @@
-dotfiles
+my dotfiles
 
 cd ~
-git clone https://github.com/jivoi/dotfiles.git
+mkdir github;cd github
+git clone https://github.com/jivoi/dotfiles.git; cd dotfiles
 ./bootstrap.sh
