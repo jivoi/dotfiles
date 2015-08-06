@@ -6,8 +6,8 @@
 
 ### Using Git and the bootstrap script
 
-{% highlight bash %}
+```bash
 cd ~
 mkdir github;cd github
 git clone https://github.com/jivoi/dotfiles.git && cd dotfiles && ./bootstrap.sh
-{% endhighlight %}
+```
