@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# create a new repo on github
+# usage: git-new <repo name>
+# git clone https://github.com/ingydotnet/git-hub ~/projects/git-hub
+# echo "source ~/projects/git-hub/init" >> ~/.bashrc
+
+set -e
+
+name=$1
+
+if [ "$1" ]; then
+  mkdir "$name"
+  cd "$name"
+  echo "# $name" > readme.md
+  git init
+  git add readme.md
+  git commit -m 'first commit'
+  git hub repo-new "$name"
+  remote=$(git hub repo "$name" | grep URL | awk '{print $3}')
+  git remote add origin "$remote"
+  git push origin master
+else
+  echo provide a repo name
+fi
