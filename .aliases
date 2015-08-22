@@ -25,6 +25,9 @@ alias ssh='ssh -oStrictHostKeyChecking=no'
 alias hosts='sudo vim /etc/hosts'
 alias open='/usr/bin/chromium-browser "$@"'
 
+alias dps='docker ps'
+alias nsent='nsenter -m -u -n -p -i -t "$@"'
+
 alias ga='git add'
 alias gp='git push'
 alias gl='git log'
