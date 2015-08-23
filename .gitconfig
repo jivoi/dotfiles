@@ -34,6 +34,7 @@
 
     # push related
     pom = push origin master
+    pod = push origin develop
 
     # pull related
     p = pull
