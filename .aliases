@@ -26,6 +26,7 @@ alias hosts='sudo vim /etc/hosts'
 alias open='/usr/bin/chromium-browser "$@"'
 
 alias dps='docker ps'
+alias dpid='docker inspect "$1"|grep Pid'
 alias nsent='nsenter -m -u -n -p -i -t "$@"'
 
 alias ga='git add'
