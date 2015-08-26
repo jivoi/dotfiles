@@ -25,6 +25,7 @@ alias ssh='ssh -oStrictHostKeyChecking=no'
 alias hosts='sudo vim /etc/hosts'
 alias open='/usr/bin/chromium-browser "$@"'
 
+alias docker='sudo /usr/bin/docker'
 alias dps='docker ps'
 alias dpa="docker ps -a"
 alias di="docker images"
