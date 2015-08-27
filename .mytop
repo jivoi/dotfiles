@@ -1,0 +1,9 @@
+#sudo mytop -d databasename --prompt
+host=localhost
+db=mysql
+delay=5
+port=3306
+socket=
+batchmode=0
+color=1
+idle=1
