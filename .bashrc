@@ -37,3 +37,11 @@ fi
 # NVM
 export NVM_DIR="/home/ekoz/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+
+# PowerLine
+if [ -f /bin/powerline-daemon ]; then
+  powerline-daemon -q
+  POWERLINE_BASH_CONTINUATION=1
+  POWERLINE_BASH_SELECT=1
+  . /usr/share/powerline/bash/powerline.sh
+fi
