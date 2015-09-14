@@ -10,6 +10,7 @@ startup_message off
 
 # Change the number of scrollback lines
 defscrollback 10000 
+terminfo xterm* ti=:te=
 
 # Bind F11 and F12 (NOT F1 and F2) to previous and next screen window
 bindkey -k F1 prev

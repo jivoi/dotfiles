@@ -21,6 +21,7 @@
     ignorecase = false
     whitespace = cr-at-eol
     editor = vim
+	trustctime = false
 
 [url "https://"]   
     insteadOf = git://
@@ -127,3 +128,5 @@
     crunk = status
     unfuck = status
     deploy = status
+[push]
+	default = matching
