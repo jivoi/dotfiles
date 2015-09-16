@@ -1,0 +1,17 @@
+export PATH=$PATH:"/cygdrive/c/Program Files/Java/jdk1.8.0_40/bin/"
+
+# WINDOWS CMDS
+alias traceroute='/cygdrive/c/Windows/system32/TRACERT.EXE'
+alias ping='/cygdrive/c/Windows/system32/PING'
+alias nslookup='/cygdrive/c/Windows/system32/nslookup.exe'
+alias resmon='/cygdrive/c/Windows/system32/resmon.exe'
+alias cals='/cygdrive/c/Windows/system32/calc.exe'
+alias cmd='/cygdrive/c/Windows/system32/cmd.exe'
+alias control='/cygdrive/c/Windows/system32/control.exe'
+alias getmac='/cygdrive/c/Windows/system32/getmac.exe'
+alias tasklist='/cygdrive/c/Windows/system32/tasklist.exe'
+alias taskkill='/cygdrive/c/Windows/system32/taskkill.exe'
+alias ipconfig='/cygdrive/c/Windows/system32/ipconfig.exe'
+alias netstat='/cygdrive/c/Windows/system32/NETSTAT.EXE'
+alias route='/cygdrive/c/Windows/system32/ROUTE.EXE'
+alias jq-win='$HOME/jq-win64.exe'
