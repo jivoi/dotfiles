@@ -16,15 +16,23 @@ alias l='ls -CF --color=auto'
 alias vi='vim'
 alias t='tree -L 1 -C -h'
 alias week='date +%V'
-alias p="sudo pacman"
-alias pu="sudo pacman -Syu"
-alias pc="sudo pacman -Scc"
 alias wget='wget --no-check-certificate'
 alias scp='scp -oStrictHostKeyChecking=no'
 alias ssh='ssh -oStrictHostKeyChecking=no'
 alias hosts='sudo vim /etc/hosts'
 alias open='/usr/bin/chromium-browser "$@"'
 
+# pkg manager
+alias p="sudo pacman"
+alias pu="sudo pacman -Syu"
+alias pc="sudo pacman -Scc"
+alias dnfi='sudo dnf install'
+alias dnfup='sudo dnf update'
+alias dnfupg='sudo dnf upgrade'
+alias dnfre='sudo dnf remove'
+alias dnfse='sudo dnf search'
+
+# docker
 alias docker='sudo /usr/bin/docker'
 alias dps='docker ps'
 alias dpa="docker ps -a"
@@ -44,6 +52,7 @@ alias dip="docker inspect --format '{{ .NetworkSettings.IPAddress }}'"
 alias dpid="docker inspect --format '{{ .State.Pid }}'"
 alias nsent='nsenter -m -u -n -p -i -t "$@"'
 
+# git
 alias ga='git add'
 alias gp='git push'
 alias gl='git log'
