@@ -67,11 +67,9 @@ alias grr='git remote rm'
 alias gpu='git pull'
 alias gcl='git clone'
 
-# reboot / halt / poweroff
-alias reboot='sudo /sbin/reboot -r now'
-alias poweroff='sudo /sbin/poweroff -r now'
-alias halt='sudo /sbin/halt -r now'
-alias shutdown='sudo /sbin/shutdown -r now'
+# reboot / shutdown
+alias reboot='sudo /sbin/reboot'
+alias shutdown='sudo /sbin/shutdown'
 
 if [ -x /usr/bin/dircolors ]; then
   test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
