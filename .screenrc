@@ -1,5 +1,10 @@
 # ~/.screenrc
 #
+screen -t bash1
+screen -t bash2
+screen -t bash3
+screen -t bash4
+screen -t bash5
 # Settings used to initialize screen sessions
 term screen-256color
 # Change default escape sequence from C-a to a backslash
