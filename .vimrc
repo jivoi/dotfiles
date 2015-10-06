@@ -14,8 +14,8 @@ set showcmd
 set nu
 
 " Текст вставляется с сохранением отступа
-" set nppaste
-set paste
+set nopaste
+"set paste
 
 " Фолдинг 
 set foldmethod=manual
@@ -96,11 +96,12 @@ set backspace=indent,eol,start whichwrap+=<,>,[,]
 
 " Преобразование Таба в пробелы
 " set expandtab
-
+set noexpandtab 
+let s:tabwidth=4
 " Размер табулации по умолчанию
-"set shiftwidth=4
-"set softtabstop=4
-" set tabstop=4
+exec 'set tabstop='     . s:tabwidth 
+exec 'set shiftwidth='  . s:tabwidth
+exec 'set softtabstop=' . s:tabwidth
 
 " Формат строки состояния
 "set statusline=%<%f%h%m%r\ %b\ %{&encoding}\ 0x\ \ %l,%c%V\ %P 
@@ -283,11 +284,11 @@ colorscheme delek
 "colorscheme xoria256
 
 " Восстановление позиции курсора при открытии файла в Vim
-if has("autocmd")
-    set viewoptions=cursor,folds
-    au BufWinLeave * mkview
-    au BufWinEnter * silent loadview
-endif
+"if has("autocmd")
+"    set viewoptions=cursor,folds
+"    au BufWinLeave * mkview
+"    au BufWinEnter * silent loadview
+"endif
 
 " Vim и кириллица переключение по CTL+^
 set keymap=russian-jcukenwin
@@ -393,5 +394,5 @@ autocmd! bufwritepre * call BackupDir()
      endfunction
 
      set tabline=%!MyTabLine()
-     set guitablabel=%!MyGuiTabLabel()
+	 set guitablabel=%!MyGuiTabLabel()
 " Задаем собственные функции для назначения имен заголовкам табов <--
