@@ -12,8 +12,8 @@ BWHITE='\[\033[1;37m\]'
 
 # Title
 if [[ "$UID" == "0" ]] ; then
-PS1="${BRED}\u@${BGREEN}\h: ${BBLUE}\W ${BRED}# ${NORMAL}"
+    PS1="${BRED}\uλ${BGREEN}\h:${BBLUE}➜ ${BBLUE}\W ${BRED}# ${NORMAL}"
 else
-PS1="${BWHITE}┌────[${BGREEN}\u${BWHITE}@${BBLUE}\h: ${BPURPLE}\w${BWHITE}]\n${BWHITE}└─>${DPURPLE}\$${NORMAL} "
+    PS1="${BWHITE}┌────[${BGREEN}\u${BWHITE}λ${BBLUE}\h: ${BPURPLE}\w${BWHITE}]\n${BWHITE}└─>${DPURPLE}\$${NORMAL} "
 fi
 #PS1='\[\033[02;36m\]\A\[\033[00m\] \[\033[01;32m\]\u@\h\[\033[01;34m\] \w \$\[\033[00m\] '

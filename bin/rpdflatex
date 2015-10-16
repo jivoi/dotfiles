@@ -1,0 +1,78 @@
+#!/bin/bash
+#
+# Remote compile LaTeX to PDF.
+#
+# Establish a single connection to the given host using SSH. All subsequent
+# calls will use the existing connection (i.e. a socket). Any inactive
+# connection will be closed after the given timeout (defaults to 30 minutes).
+#
+# The program requires the given host to have the pdflatex binary and its
+# dependencies installed.
+
+set -e -u
+[[ -n "${DEBUG:-}" ]] && set -x
+
+# Remote LaTeX compiler.
+LATEXC=${LATEXC:-pdflatex}
+# Remote LaTeX compiler flags.
+LATEXFLAGS="-file-line-error -halt-on-error ${LATEXFLAGS:-}"
+
+help() {
+  cat <<HELP
+usage: rpdflatex [options] HOST FILE
+
+    -h           this message
+    -t <timeout> keep connections alive for the given amount of seconds
+HELP
+}
+
+open() {
+  which open &>/dev/null && exec open "${1:-}"
+  which xdg-open &>/dev/null && exec xdg-open "${1:-}"
+}
+
+main() {
+  local timeout=1800
+  while getopts "ht:" opt; do
+    case "$opt" in
+      h)
+        help
+        exit 0
+        ;;
+      t)
+        timeout=$OPTARG
+        ;;
+    esac
+  done
+  shift $(expr $OPTIND - 1)
+
+  local host=${1:-}
+  local file=${2:-}
+
+  [[ -z "$host" || -z "$file" ]] && { help; return 1; }
+
+  # SSH socket directory.
+  local sockdir="${TMPDIR:-/tmp}/rpdflatex/${host}"
+  # SSH socket path.
+  local sock="${sockdir}/master"
+  # SSH socket command.
+  local sshc="ssh -S "${sock}""
+  if [[ ! -e "$sock" ]]; then
+    mkdir -p "$(dirname "$sock")"
+    $sshc -f -M "$host" sleep "$timeout"
+    $sshc "$host" 'cd $(mktemp -d); pwd' >"${sockdir}/pwd"
+  else
+    $sshc -O check "$host"
+  fi
+  local pwd=$(cat "${sockdir}/pwd")
+
+  local filename=$(basename "$file")
+  local basename=$(basename "$filename" ".tex")
+
+  rsync --rsh "$sshc" "$file" "${host}:${pwd}/${filename}"
+  $sshc "$host" "cd ${pwd}; ${LATEXC} ${LATEXFLAGS} ${filename}"
+  rsync --rsh "$sshc" "${host}:${pwd}/${basename}.pdf" "${basename}.pdf"
+  open "${basename}.pdf"
+}
+
+main "$@"
