@@ -27,6 +27,7 @@ alias p="sudo pacman"
 alias pu="sudo pacman -Syu"
 alias pc="sudo pacman -Scc"
 alias dnfi='sudo dnf install'
+alias dnfck='sudo dnf check-update'
 alias dnfup='sudo dnf update'
 alias dnfupg='sudo dnf upgrade'
 alias dnfre='sudo dnf remove'
