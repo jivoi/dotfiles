@@ -5,10 +5,8 @@ GSSAPIAuthentication no
 CompressionLevel 9
 Compression yes
 
-host *
-   controlmaster auto
-   controlpath /tmp/ssh-%r@%h:%p
-   User root
+Host *.onion
+	ProxyCommand socat - SOCKS4A:localhost:%h:%p,socksport=9050 
 
 Host kali
     Hostname 192.168.56.101
@@ -19,6 +17,11 @@ Host ubuntu
     Hostname 192.168.56.102
     Port 22
     User root
+
+host *
+   controlmaster auto
+   controlpath /tmp/ssh-%r@%h:%p
+   User root
 
 # tunneling
 #Host <space-separated-list-of-hostnames>
