@@ -55,6 +55,7 @@ alias dpid="docker inspect --format '{{ .State.Pid }}'"
 alias nsent='nsenter -m -u -n -p -i -t "$@"'
 
 # git
+alias g='git'
 alias ga='git add'
 alias gp='git push'
 alias gl='git log'
