@@ -2,6 +2,7 @@ alias ..='cd ..'
 alias ...='cd ../../'
 alias ....='cd ../../..'
 
+alias path="echo $PATH | tr -s ':' '\n'"
 alias msf='msfconsole -q'
 alias os='openstack'
 alias fuck='$(thefuck $(fc -ln -1))'
