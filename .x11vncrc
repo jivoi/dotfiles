@@ -1,0 +1,11 @@
+#
+# ~/.x11vncrc
+#bg
+quiet
+nopw
+ncache 10 
+forever 
+localhost
+display :0
+skip_lockkeys
+repeat
