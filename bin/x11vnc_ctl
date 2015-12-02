@@ -1,0 +1,36 @@
+#!/bin/bash
+
+case "$1" in
+start)
+  pid="$(pidof x11vnc)"
+  if [[ $? -eq 0 && "$pid" != "" ]]; then
+    echo "Start x11vnc: already started"
+  else
+    echo 'x11vnc -bg ' | sh
+    sleep 2
+    echo "Start x11vnc: $(pidof x11vnc)"
+  fi
+;;
+stop)
+  pid="$(pidof x11vnc)"
+  if [[ $? -eq 0 && "$pid" != "" ]]; then
+    echo "Stop x11vnc: $pid."
+    kill -9 $pid
+  else
+    echo "Stop x11vnc: not running"
+    exit 1
+  fi
+;;
+status)
+  pid="$(pidof x11vnc)"
+  if [[ "$pid" != "" ]]; then
+    echo "Status x11vnc: $pid"
+  else
+    echo "Status x11vnc: not running"
+  fi
+;;
+*)
+  echo "Usage: x11vnc_ctl {start|stop|status}"
+  exit 1
+;;
+esac
