@@ -2,6 +2,8 @@ alias ..='cd ..'
 alias ...='cd ../../'
 alias ....='cd ../../..'
 
+alias lsock='sudo /usr/sbin/lsof -i -P'
+alias tn='tr -d "\n"'
 alias path="echo $PATH | tr -s ':' '\n'"
 alias msf='msfconsole -q'
 alias os='openstack'
