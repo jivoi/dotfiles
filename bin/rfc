@@ -8,7 +8,6 @@
 #
 # URI: github.com/bfontaine/rfc
 #
-
 __rfc() {
 
     local VERSION='0.1.0'
