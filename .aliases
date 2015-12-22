@@ -2,6 +2,7 @@ alias ..='cd ..'
 alias ...='cd ../../'
 alias ....='cd ../../..'
 
+alias ct='column -t'
 alias lsock='sudo /usr/sbin/lsof -i -P'
 alias tn='tr -d "\n"'
 alias path="echo $PATH | tr -s ':' '\n'"
