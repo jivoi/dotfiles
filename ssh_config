@@ -4,9 +4,10 @@ LogLevel error
 GSSAPIAuthentication no
 CompressionLevel 9
 Compression yes
+Protocol 2
 
 Host *.onion
-	ProxyCommand socat - SOCKS4A:localhost:%h:%p,socksport=9050 
+    ProxyCommand socat - SOCKS4A:localhost:%h:%p,socksport=9050
 
 Host kali
     Hostname 192.168.56.101
@@ -18,10 +19,14 @@ Host ubuntu
     Port 22
     User root
 
-host *
-   controlmaster auto
-   controlpath /tmp/ssh-%r@%h:%p
-   User root
+Host *
+    # https://stribika.github.io/2015/01/04/secure-secure-shell.html
+    Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr
+    KexAlgorithms curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256
+    MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-ripemd160-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,hmac-ripemd160,umac-128@openssh.com
+    controlmaster auto
+    controlpath /tmp/ssh-%r@%h:%p
+    User root
 
 # tunneling
 #Host <space-separated-list-of-hostnames>
