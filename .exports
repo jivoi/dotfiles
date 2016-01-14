@@ -1,13 +1,10 @@
 unset MAILCHECK
-export GOPATH=$HOME/go
-export GOBIN=$HOME/bin
 export NOVACLIENT_DEBUG=1
 export KEYSTONECLIENT_DEBUG=1
 export OS_USERNAME=
 export OS_PASSWORD=
 export OS_TENANT_NAME=
 export OS_AUTH_URL=
-export NOVA_KEY_DIR=/home/ekoz/
 export EC2_ACCESS_KEY=
 export EC2_SECRET_KEY=
 export EC2_URL=
@@ -17,7 +14,6 @@ export EC2_CERT=${NOVA_KEY_DIR}/cert.pem
 export NOVA_CERT=${NOVA_KEY_DIR}/cacert.pem
 export EUCALYPTUS_CERT=${NOVA_CERT} # euca-bundle-image seems to require this set
 export Automoc4_DIR=/usr/lib/automoc4
-export LD_LIBRARY_PATH=/opt/pt/lib/:$LD_LIBRARY_PATH
 export SVN_SSH="ssh -l ekoz"
 export YR_LOGIN="root"
 export PYTHONSTARTUP=~/.pythonrc

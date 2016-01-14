@@ -1,16 +1,15 @@
 #!/bin/bash
-export PATH=~/bin/:~/.rvm/bin:/cygdrive/c/Go/bin:/bin:/sbin:/usr/sbin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/games:/usr/lib/java/bin:/usr/lib/java/jre/bin:/usr/lib/qt/bin:/usr/lib/qt4/bin:/usr/share/texmf/bin:/opt/kde/bin:/opt/java/jre/bin:/opt/pt/bin:/opt/pt/lib:/opt/java/jre/bin
+
+for file in ~/.{path,bash_prompt,exports,aliases,functions,extra}; do
+	[ -r "$file" ] && [ -f "$file" ] && source "$file";
+done;
+unset file;
 
 shopt -s nocaseglob
 shopt -s cdspell
 shopt -s extglob
 shopt -s checkwinsize
 shopt -s histappend
-
-for file in ~/.{path,bash_prompt,exports,aliases,functions,extra}; do
-	[ -r "$file" ] && [ -f "$file" ] && source "$file";
-done;
-unset file;
 
 # Bash-completion
 if [ -f /usr/share/bash-completion/bash_completion ]; then

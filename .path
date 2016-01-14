@@ -1,0 +1,11 @@
+export PATH=~/bin/:~/.rvm/bin:/cygdrive/c/Go/bin:/bin:/sbin:/usr/sbin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/games:/usr/lib/java/bin:/usr/lib/java/jre/bin:/usr/lib/qt/bin:/usr/lib/qt4/bin:/usr/share/texmf/bin:/opt/kde/bin:/opt/java/jre/bin:/opt/pt/bin:/opt/pt/lib:/opt/java/jre/bin
+
+export GOPATH=$HOME/go
+export GOBIN=$HOME/bin
+export NOVA_KEY_DIR=/home/ekoz/
+export LD_LIBRARY_PATH=/opt/pt/lib/:$LD_LIBRARY_PATH
+
+
+#export PATH=$PATH:/usr/local/go/bin
+#export GOPATH="$HOME/gofolder"
+#export PATH=$PATH:$GOPATH/bin
