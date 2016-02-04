@@ -106,11 +106,12 @@ _z() {
             --) while [ "$1" ]; do shift; local fnd="$fnd${fnd:+ }$1";done;;
             -*) local opt=${1:1}; while [ "$opt" ]; do case ${opt:0:1} in
                     c) local fnd="^$PWD $fnd";;
-                    h) echo "${_Z_CMD:-z} [-chlrtx] args" >&2; return;;
-                    x) sed -i -e "\:^${PWD}|.*:d" "$datafile";;
+                    e) local echo=echo;;
+                    h) echo "${_Z_CMD:-z} [-cehlrtx] args" >&2; return;;
                     l) local list=1;;
                     r) local typ="rank";;
                     t) local typ="recent";;
+                    x) sed -i -e "\:^${PWD}|.*:d" "$datafile";;
                 esac; opt=${opt:1}; done;;
              *) local fnd="$fnd${fnd:+ }$1";;
         esac; local last=$1; [ "$#" -gt 0 ] && shift; done
@@ -198,7 +199,8 @@ _z() {
             }
         ')"
         [ $? -gt 0 ] && return
-        [ "$cd" ] && cd "$cd"
+        [ "$cd" ] || return
+        ${echo:-cd} "$cd"
     fi
 }
 
@@ -206,7 +208,7 @@ alias ${_Z_CMD:-z}='_z 2>&1'
 
 [ "$_Z_NO_RESOLVE_SYMLINKS" ] || _Z_RESOLVE_SYMLINKS="-P"
 
-if compctl >/dev/null 2>&1; then
+if type compctl >/dev/null 2>&1; then
     # zsh
     [ "$_Z_NO_PROMPT_COMMAND" ] || {
         # populate directory list, avoid clobbering any other precmds.
@@ -230,7 +232,7 @@ if compctl >/dev/null 2>&1; then
         reply=(${(f)"$(_z --complete "$compl")"})
     }
     compctl -U -K _z_zsh_tab_completion _z
-elif complete >/dev/null 2>&1; then
+elif type complete >/dev/null 2>&1; then
     # bash
     # tab completion
     complete -o filenames -C '_z --complete "$COMP_LINE"' ${_Z_CMD:-z}
