@@ -2,6 +2,7 @@ alias ..='cd ..'
 alias ...='cd ../../'
 alias ....='cd ../../..'
 
+alias mount='mount |column -t'
 alias ct='column -t'
 alias lsock='sudo /usr/sbin/lsof -i -P'
 alias tn='tr -d "\n"'
