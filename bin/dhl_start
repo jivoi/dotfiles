@@ -1,0 +1,7 @@
+#!/bin/bash
+kstart --desktop 1 --maximize konsole
+kstart --desktop 2 --maximize chromium
+kstart --desktop 3 --maximize subl3
+kstart --desktop 3 keepass
+kstart --desktop 3 transmission-qt
+kstart --desktop 4 --maximize krusader
