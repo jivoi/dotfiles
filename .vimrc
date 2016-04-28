@@ -5,19 +5,19 @@
 set nocompatible
 
 " Показывать положение курсора всё время.
-set ruler  
+set ruler
 
 " Показывать незавершённые команды в статусбаре
-set showcmd  
+set showcmd
 
 " Включаем нумерацию строк
 set nu
 
 " Текст вставляется с сохранением отступа
-set nopaste
-"set paste
+"set nopaste
+set paste
 
-" Фолдинг 
+" Фолдинг
 set foldmethod=manual
 
 "Колоночка, чтобы показывать плюсики для скрытия блоков кода:
@@ -46,7 +46,7 @@ set lazyredraw
 
 " Выключаем надоедливый "звонок"
 set novisualbell
-set t_vb=   
+set t_vb=
 
 " Поддержка мыши
 set mouse=a
@@ -96,15 +96,15 @@ set backspace=indent,eol,start whichwrap+=<,>,[,]
 
 " Преобразование Таба в пробелы
 " set expandtab
-set noexpandtab 
+set noexpandtab
 let s:tabwidth=4
 " Размер табулации по умолчанию
-exec 'set tabstop='     . s:tabwidth 
+exec 'set tabstop='     . s:tabwidth
 exec 'set shiftwidth='  . s:tabwidth
 exec 'set softtabstop=' . s:tabwidth
 
 " Формат строки состояния
-"set statusline=%<%f%h%m%r\ %b\ %{&encoding}\ 0x\ \ %l,%c%V\ %P 
+"set statusline=%<%f%h%m%r\ %b\ %{&encoding}\ 0x\ \ %l,%c%V\ %P
 set statusline=%<%f%h%m%r%=format=%{&fileformat}\ file=%{&fileencoding}\ enc=%{&encoding}\ %b\ 0x%B\ %l,%c%V\ %P
 set laststatus=2
 
@@ -159,19 +159,19 @@ vmap <F3> :OpenNERDTree<CR>
 imap <F3> :OpenNERDTree<CR>
 
 " F4 - создать вкладку
-nmap <F4> :tabnew<cr> 
-vmap <F4> :tabnew<cr> 
-imap <F4> :tabnew<cr> 
+nmap <F4> :tabnew<cr>
+vmap <F4> :tabnew<cr>
+imap <F4> :tabnew<cr>
 
 " F5 - предыдушая вкладка
-nmap <F5> :tabprevious<cr> 
-vmap <F5> :tabprevious<cr> 
-imap <F5> :tabprevious<cr> 
+nmap <F5> :tabprevious<cr>
+vmap <F5> :tabprevious<cr>
+imap <F5> :tabprevious<cr>
 
 " F6 - следующая вкладка
-nmap <F6> :tabnext<cr> 
-vmap <F6> :tabnext<cr> 
-imap <F6> :tabnext<cr> 
+nmap <F6> :tabnext<cr>
+vmap <F6> :tabnext<cr>
+imap <F6> :tabnext<cr>
 
 " F7 - следующий буфер
 map <F7> :bn<cr>
@@ -218,7 +218,7 @@ imap >Ins> <Esc>i
 
 " Меню выбора кодировки текста (koi8-r, cp1251, cp866, utf8)
 set wildmenu
-set wcm=<Tab> 
+set wcm=<Tab>
 menu Encoding.koi8-r :e ++enc=koi8-r<CR>
 menu Encoding.windows-1251 :e ++enc=cp1251<CR>
 menu Encoding.cp866 :e ++enc=cp866<CR>
@@ -229,7 +229,7 @@ imap [ []<LEFT>
 " Аналогично и для {
 imap {<CR> {<CR>}<Esc>O
 
-" С-q - выход из Vim 
+" С-q - выход из Vim
 map <C-Q> <Esc>:qa<cr>
 
 " Слова откуда будем завершать
@@ -240,7 +240,7 @@ set complete+=.
 set complete+=k
 " Из других открытых буферов
 set complete+=b
-" из тегов 
+" из тегов
 set complete+=t
 
 " Для pydiction
@@ -267,7 +267,7 @@ set mps-=[:]
 
 " Поддержка SQL СУБД MySQL:
 if has("autocmd")
-         autocmd BufRead *.sql set filetype=mysql      
+         autocmd BufRead *.sql set filetype=mysql
 endif
 
 " Подсвечиваем все что можно подсвечивать
@@ -278,7 +278,7 @@ let python_highlight_all = 1
 set t_Co=256
 
 " Тема из Color Sampler Pack
-set background=dark 
+set background=dark
 " colorscheme ir_black
 colorscheme delek
 "colorscheme xoria256
