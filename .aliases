@@ -76,6 +76,13 @@ alias grr='git remote rm'
 alias gpu='git pull'
 alias gcl='git clone'
 
+# virtualbox
+alias vboxm='vboxmanage'
+alias vboxml='vboxmanage list vms'
+alias vboxmlr='vboxmanage list runningvms'
+alias vboxms='vboxmanage startvm'
+alias vboxmsh='vboxmanage startvm --type headless'
+
 # reboot / shutdown
 alias reboot='sudo /sbin/reboot'
 alias shutdown='sudo /sbin/shutdown'
