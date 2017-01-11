@@ -8,6 +8,7 @@ try:
     import os
     import sys
     import atexit
+    import pprint
 except ImportError:
     print("Module readline not available.")
 else:
@@ -72,5 +73,6 @@ _c = TermColors()
 
 # Enable Color Prompts
 ######################
-#sys.ps1 = '%s❯%s❯%s❯ %s' % (_c['Red'], _c['Yellow'], _c['Green'], _c['Normal'])
-#sys.ps2 = '%s... %s' % (_c['Red'], _c['Normal'])
+sys.ps1 = "\033[0;34m>>> \033[0m"
+sys.ps2 = "\033[1;34m... \033[0m"
+sys.displayhook = pprint.pprint
