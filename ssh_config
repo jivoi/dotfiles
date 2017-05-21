@@ -2,8 +2,8 @@ UserKnownHostsFile /dev/null
 StrictHostKeyChecking no
 LogLevel error
 GSSAPIAuthentication no
-CompressionLevel 9
-Compression yes
+#CompressionLevel 9
+#Compression yes
 Protocol 2
 
 Host *.onion
