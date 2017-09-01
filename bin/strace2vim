@@ -1,0 +1,10 @@
+#!/bin/sh
+
+OS=`uname`
+CMD=$1
+
+if [[ "$OS" == "CYGWIN_NT-10.0-WOW" ]]; then
+    /usr/bin/strace.exe $CMD | /usr/bin/vim.exe -c ':set syntax=strace' -
+else
+    /usr/bin/strace $CMD | /usr/bin/vim -c ':set syntax=strace' -
+fi
