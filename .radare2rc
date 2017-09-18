@@ -1,0 +1,12 @@
+e cfg.fortunes=false
+e scr.histsave=true
+e scr.color=1
+e asm.cmtright=true
+e cmd.stack = true
+e cfg.debug=true
+e scr.utf8 = true
+e io.cache=true
+e asm.describe=true
+e asm.midflags=true
+e asm.emu=true
+eco tango
