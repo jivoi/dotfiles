@@ -1,0 +1,18 @@
+#!/bin/sh
+
+action=${1:-'build'}
+configs_dir=~/.ssh/configs
+
+if [[ "$action" == "build" ]]; then
+    cat ~/github/dotfiles/ssh_config $configs_dir/* > ~/.ssh/config 2>/dev/null
+    echo 'sshconfig generated'
+elif [[ "$action" == "list" ]]; then
+    # sshconfig list to see list of client specific
+    # configuration files present in configs folder
+    ls -l1 $configs_dir | tail -n+2 | awk '{print $NF}'
+elif [[ "$action" == "rm" ]]; then
+    # sshconfig rm <filename>
+    file=$2
+    rm -f $configs_dir/$file
+    $0 build
+fi
