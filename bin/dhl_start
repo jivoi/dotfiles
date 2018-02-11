@@ -1,5 +1,6 @@
 #!/bin/bash
 kstart --desktop 1 --maximize konsole
+kstart --desktop 1 veracrypt
 kstart --desktop 2 --maximize chromium
 kstart --desktop 3 --maximize subl3
 kstart --desktop 3 keepass

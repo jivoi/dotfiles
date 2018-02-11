@@ -42,7 +42,7 @@ alias dnfre='sudo dnf remove'
 alias dnfse='sudo dnf search'
 
 # docker
-alias docker='sudo /usr/bin/docker'
+alias docker='/usr/bin/docker'
 alias dps='docker ps'
 alias dpa="docker ps -a"
 alias di="docker images"

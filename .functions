@@ -167,12 +167,12 @@ push_dotfiles() {
   done
 }
 
-_ssh_completion ()
-{
-    cur=${COMP_WORDS[COMP_CWORD]};
-    COMPREPLY=($(compgen -W '$(cut -d " " -f1 ~/hosts/hosts_all) --all --schema' -- $cur))
-}
-complete -F _ssh_completion ssh
+#_ssh_completion ()
+#{
+#    cur=${COMP_WORDS[COMP_CWORD]};
+#    COMPREPLY=($(compgen -W '$(cut -d " " -f1 ~/hosts/hosts_all) --all --schema' -- $cur))
+#}
+#complete -F _ssh_completion ssh
 
 _fab_completion() {
     COMPREPLY=( $( \
