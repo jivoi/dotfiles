@@ -28,7 +28,7 @@ export DISABLE_CHECK_ON_STARTUP="true"
 # export USER_AGENT="Mozilla/5.0 (Windows; U; MSIE 9.0; WIndows NT 9.0; en-US))"
 
 # Uncomment and increase the timeout period if you get errors/timeouts on babun check
-# export CHECK_TIMEOUT_IN_SECS=4
+export CHECK_TIMEOUT_IN_SECS=4
 
 # Uncomment to enable bloda detection
 export CYGWIN="nodosfilewarning mintty detect_bloda"
