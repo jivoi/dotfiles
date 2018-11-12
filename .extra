@@ -1,0 +1,26 @@
+# WINDOWS CMDS
+alias traceroute='/cygdrive/c/Windows/system32/TRACERT.EXE'
+alias ping='/cygdrive/c/Windows/system32/PING'
+alias nslookup='/cygdrive/c/Windows/system32/nslookup.exe'
+alias resmon='/cygdrive/c/Windows/system32/resmon.exe'
+alias calc='/cygdrive/c/Windows/system32/calc.exe'
+alias cmd='/cygdrive/c/Windows/system32/cmd.exe'
+alias control='/cygdrive/c/Windows/system32/control.exe'
+alias getmac='/cygdrive/c/Windows/system32/getmac.exe'
+alias tasklist='/cygdrive/c/Windows/system32/tasklist.exe'
+alias taskkill='/cygdrive/c/Windows/system32/taskkill.exe'
+alias ipconfig='/cygdrive/c/Windows/system32/ipconfig.exe'
+alias netstat='/cygdrive/c/Windows/system32/NETSTAT.EXE'
+alias route='/cygdrive/c/Windows/system32/ROUTE.EXE'
+alias certutil='/cygdrive/c/Windows/system32/certutil.exe'
+
+alias jq-win='~/bin/jq-win64.exe'
+alias unrar='~/bin/unrar.exe'
+
+alias vboxm='/cygdrive/c/Program\ Files/Oracle/VirtualBox/VBoxManage.exe'
+alias vboxml='/cygdrive/c/Program\ Files/Oracle/VirtualBox/VBoxManage.exe list vms'
+alias vboxmlr='/cygdrive/c/Program\ Files/Oracle/VirtualBox/VBoxManage.exe list runningvms'
+alias vboxms='/cygdrive/c/Program\ Files/Oracle/VirtualBox/VBoxManage.exe startvm'
+alias vboxmsh='/cygdrive/c/Program\ Files/Oracle/VirtualBox/VBoxManage.exe startvm --type headless'
+
+alias vagrant='/cygdrive/c/HashiCorp/Vagrant/bin/vagrant.exe'
