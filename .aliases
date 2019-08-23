@@ -8,6 +8,7 @@ alias lsock='sudo /usr/sbin/lsof -i -P'
 alias tn='tr -d "\n"'
 alias path="echo $PATH | tr -s ':' '\n'"
 alias msf='msfconsole -q'
+alias nmap="grc nmap"
 alias os='openstack'
 alias fuck='$(thefuck $(fc -ln -1))'
 alias hgrep='history | grep $1'
